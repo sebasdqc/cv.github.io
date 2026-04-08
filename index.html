@@ -1,0 +1,595 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Sebastian Quijada — Growth & Data</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,300;9..144,400;9..144,500;9..144,600&family=JetBrains+Mono:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --bg: #0a0a0b;
+    --bg-elev: #111114;
+    --line: #1f1f24;
+    --line-soft: #17171b;
+    --ink: #e9e9ec;
+    --ink-dim: #8a8a93;
+    --ink-faint: #55555e;
+    --accent: #c6ff3d;
+    --accent-soft: rgba(198, 255, 61, 0.08);
+    --display: 'Fraunces', Georgia, serif;
+    --mono: 'JetBrains Mono', ui-monospace, monospace;
+  }
+
+  *{ box-sizing: border-box; margin: 0; padding: 0; }
+  html{ scroll-behavior: smooth; }
+  body{
+    background: var(--bg);
+    color: var(--ink);
+    font-family: var(--mono);
+    font-size: 14px;
+    line-height: 1.6;
+    font-weight: 300;
+    -webkit-font-smoothing: antialiased;
+    overflow-x: hidden;
+    background-image:
+      radial-gradient(ellipse 80% 50% at 50% -10%, rgba(198,255,61,0.06), transparent),
+      linear-gradient(var(--line-soft) 1px, transparent 1px),
+      linear-gradient(90deg, var(--line-soft) 1px, transparent 1px);
+    background-size: auto, 48px 48px, 48px 48px;
+  }
+
+  .wrap{
+    max-width: 1080px;
+    margin: 0 auto;
+    padding: 48px 32px 96px;
+  }
+
+  /* ——— Top bar ——— */
+  .topbar{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding-bottom: 24px;
+    border-bottom: 1px solid var(--line);
+    font-size: 11px;
+    text-transform: uppercase;
+    letter-spacing: 0.12em;
+    color: var(--ink-dim);
+  }
+  .topbar .dot{
+    display: inline-block;
+    width: 6px; height: 6px;
+    border-radius: 50%;
+    background: var(--accent);
+    margin-right: 8px;
+    box-shadow: 0 0 12px var(--accent);
+    animation: pulse 2.4s ease-in-out infinite;
+  }
+  @keyframes pulse {
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0.4; }
+  }
+
+  /* ——— Hero ——— */
+  .hero{
+    padding: 96px 0 80px;
+    border-bottom: 1px solid var(--line);
+    position: relative;
+  }
+  .hero .label{
+    font-size: 11px;
+    text-transform: uppercase;
+    letter-spacing: 0.2em;
+    color: var(--ink-dim);
+    margin-bottom: 32px;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+  }
+  .hero .label::before{
+    content: '';
+    width: 32px; height: 1px;
+    background: var(--accent);
+  }
+  .hero h1{
+    font-family: var(--display);
+    font-weight: 300;
+    font-size: clamp(44px, 8vw, 104px);
+    line-height: 0.95;
+    letter-spacing: -0.03em;
+    margin-bottom: 32px;
+  }
+  .hero h1 em{
+    font-style: italic;
+    color: var(--accent);
+    font-weight: 400;
+  }
+  .hero .tagline{
+    max-width: 560px;
+    font-size: 15px;
+    color: var(--ink-dim);
+    line-height: 1.7;
+  }
+  .hero .meta{
+    position: absolute;
+    top: 96px;
+    right: 0;
+    text-align: right;
+    font-size: 10px;
+    text-transform: uppercase;
+    letter-spacing: 0.15em;
+    color: var(--ink-faint);
+    line-height: 2;
+  }
+  @media (max-width: 720px){
+    .hero .meta{ display: none; }
+  }
+
+  /* ——— Section base ——— */
+  section{
+    padding: 72px 0;
+    border-bottom: 1px solid var(--line);
+  }
+  .sec-head{
+    display: grid;
+    grid-template-columns: 180px 1fr;
+    gap: 48px;
+    margin-bottom: 48px;
+  }
+  .sec-num{
+    font-size: 11px;
+    text-transform: uppercase;
+    letter-spacing: 0.2em;
+    color: var(--ink-faint);
+  }
+  .sec-title{
+    font-family: var(--display);
+    font-size: 28px;
+    font-weight: 400;
+    letter-spacing: -0.01em;
+    color: var(--ink);
+  }
+  .sec-title em{
+    font-style: italic;
+    color: var(--ink-dim);
+  }
+  @media (max-width: 720px){
+    .sec-head{
+      grid-template-columns: 1fr;
+      gap: 12px;
+      margin-bottom: 32px;
+    }
+  }
+
+  /* ——— Stack grid ——— */
+  .stack{
+    display: grid;
+    grid-template-columns: 180px 1fr;
+    gap: 48px;
+  }
+  .stack-groups{
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 40px;
+  }
+  .stack-group h4{
+    font-size: 10px;
+    text-transform: uppercase;
+    letter-spacing: 0.2em;
+    color: var(--ink-faint);
+    margin-bottom: 16px;
+    padding-bottom: 12px;
+    border-bottom: 1px solid var(--line);
+  }
+  .stack-group ul{
+    list-style: none;
+  }
+  .stack-group li{
+    padding: 8px 0;
+    font-size: 14px;
+    color: var(--ink);
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    transition: color 0.3s, transform 0.3s;
+  }
+  .stack-group li::before{
+    content: '→';
+    color: var(--accent);
+    font-size: 12px;
+  }
+  .stack-group li:hover{
+    color: var(--accent);
+    transform: translateX(4px);
+  }
+  @media (max-width: 860px){
+    .stack{ grid-template-columns: 1fr; gap: 32px; }
+  }
+  @media (max-width: 560px){
+    .stack-groups{ grid-template-columns: 1fr; gap: 32px; }
+  }
+
+  /* ——— About ——— */
+  .about{
+    display: grid;
+    grid-template-columns: 180px 1fr;
+    gap: 48px;
+  }
+  .about p{
+    font-family: var(--display);
+    font-size: 22px;
+    font-weight: 300;
+    line-height: 1.5;
+    color: var(--ink);
+    max-width: 680px;
+    letter-spacing: -0.005em;
+  }
+  .about p + p{
+    margin-top: 24px;
+    font-size: 15px;
+    font-family: var(--mono);
+    color: var(--ink-dim);
+    line-height: 1.8;
+  }
+  @media (max-width: 720px){
+    .about{ grid-template-columns: 1fr; gap: 16px; }
+    .about p{ font-size: 18px; }
+  }
+
+  /* ——— Experience ——— */
+  .exp{
+    display: grid;
+    grid-template-columns: 180px 1fr;
+    gap: 48px;
+  }
+  .exp-list{ display: flex; flex-direction: column; }
+  .job{
+    padding: 32px 0;
+    border-top: 1px solid var(--line);
+    display: grid;
+    grid-template-columns: 140px 1fr;
+    gap: 32px;
+    transition: background 0.4s;
+  }
+  .job:hover{
+    background: linear-gradient(90deg, var(--accent-soft), transparent 60%);
+  }
+  .job:last-child{ border-bottom: 1px solid var(--line); }
+  .job-date{
+    font-size: 10px;
+    text-transform: uppercase;
+    letter-spacing: 0.15em;
+    color: var(--ink-faint);
+    padding-top: 4px;
+  }
+  .job-role{
+    font-family: var(--display);
+    font-size: 20px;
+    font-weight: 400;
+    color: var(--ink);
+    margin-bottom: 2px;
+  }
+  .job-company{
+    font-size: 11px;
+    text-transform: uppercase;
+    letter-spacing: 0.15em;
+    color: var(--accent);
+    margin-bottom: 16px;
+  }
+  .job-desc{
+    font-size: 13px;
+    color: var(--ink-dim);
+    line-height: 1.75;
+    max-width: 620px;
+  }
+  @media (max-width: 860px){
+    .exp{ grid-template-columns: 1fr; gap: 32px; }
+  }
+  @media (max-width: 560px){
+    .job{ grid-template-columns: 1fr; gap: 8px; }
+  }
+
+  /* ——— Education ——— */
+  .edu{
+    display: grid;
+    grid-template-columns: 180px 1fr;
+    gap: 48px;
+  }
+  .edu-grid{
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1px;
+    background: var(--line);
+    border: 1px solid var(--line);
+  }
+  .edu-item{
+    background: var(--bg);
+    padding: 24px;
+    transition: background 0.3s;
+  }
+  .edu-item:hover{ background: var(--bg-elev); }
+  .edu-inst{
+    font-family: var(--display);
+    font-size: 16px;
+    color: var(--ink);
+    margin-bottom: 4px;
+  }
+  .edu-deg{
+    font-size: 12px;
+    color: var(--ink-dim);
+    margin-bottom: 8px;
+  }
+  .edu-year{
+    font-size: 10px;
+    text-transform: uppercase;
+    letter-spacing: 0.15em;
+    color: var(--ink-faint);
+  }
+  @media (max-width: 860px){
+    .edu{ grid-template-columns: 1fr; gap: 32px; }
+  }
+  @media (max-width: 560px){
+    .edu-grid{ grid-template-columns: 1fr; }
+  }
+
+  /* ——— Manifesto / outro ——— */
+  .manifesto{
+    padding: 96px 0 32px;
+    text-align: left;
+  }
+  .manifesto .mark{
+    font-family: var(--display);
+    font-size: 11px;
+    text-transform: uppercase;
+    letter-spacing: 0.25em;
+    color: var(--ink-faint);
+    margin-bottom: 32px;
+    display: flex;
+    align-items: center;
+    gap: 16px;
+  }
+  .manifesto .mark::before,
+  .manifesto .mark::after{
+    content: '';
+    flex: 0 0 40px;
+    height: 1px;
+    background: var(--line);
+  }
+  .manifesto .mark::after{ flex: 1; }
+  .manifesto h2{
+    font-family: var(--display);
+    font-style: italic;
+    font-weight: 300;
+    font-size: clamp(32px, 5.5vw, 64px);
+    line-height: 1.1;
+    letter-spacing: -0.02em;
+    max-width: 900px;
+    margin-bottom: 24px;
+  }
+  .manifesto h2 span{
+    color: var(--accent);
+    font-style: normal;
+  }
+  .manifesto .sign{
+    margin-top: 48px;
+    font-size: 10px;
+    text-transform: uppercase;
+    letter-spacing: 0.2em;
+    color: var(--ink-faint);
+    display: flex;
+    justify-content: space-between;
+    padding-top: 24px;
+    border-top: 1px solid var(--line);
+  }
+  @media (max-width: 560px){
+    .manifesto .sign{ flex-direction: column; gap: 8px; }
+  }
+
+  /* ——— Entrance animation ——— */
+  .fade-up{
+    opacity: 0;
+    transform: translateY(20px);
+    animation: fadeUp 0.9s cubic-bezier(0.2, 0.8, 0.2, 1) forwards;
+  }
+  @keyframes fadeUp {
+    to { opacity: 1; transform: translateY(0); }
+  }
+  .d1{ animation-delay: 0.1s; }
+  .d2{ animation-delay: 0.25s; }
+  .d3{ animation-delay: 0.4s; }
+  .d4{ animation-delay: 0.55s; }
+</style>
+</head>
+<body>
+<div class="wrap">
+
+  <!-- ——— TOP BAR ——— -->
+  <div class="topbar fade-up">
+    <div><span class="dot"></span>DISPONIBLE / CARACAS, VE</div>
+    <div>2026 — PORTFOLIO</div>
+  </div>
+
+  <!-- ——— HERO ——— -->
+  <header class="hero">
+    <div class="label fade-up d1">Growth · Data · Automatización</div>
+    <h1 class="fade-up d2">Sebastián<br>Quijada<em>.</em></h1>
+    <p class="tagline fade-up d3">
+      Me muevo en la intersección del Growth Marketing y el análisis de datos.
+      Diseño estrategias basadas en evidencia, construyo sistemas agénticos y
+      traduzco datos en decisiones que escalan negocios.
+    </p>
+    <div class="meta fade-up d4">
+      VENEZUELA<br>
+      SPANISH — FIRST<br>
+      EST. 2017
+    </div>
+  </header>
+
+  <!-- ——— STACK ——— -->
+  <section>
+    <div class="stack">
+      <div class="sec-num">— 01 / STACK</div>
+      <div>
+        <div class="sec-title" style="margin-bottom: 32px;">Herramientas <em>& conocimientos</em></div>
+        <div class="stack-groups">
+          <div class="stack-group">
+            <h4>Tooling</h4>
+            <ul>
+              <li>Claude Code</li>
+              <li>n8n</li>
+              <li>Manus</li>
+              <li>Python</li>
+              <li>SQL</li>
+              <li>Tableau</li>
+            </ul>
+          </div>
+          <div class="stack-group">
+            <h4>Growth</h4>
+            <ul>
+              <li>Adquisición & retención</li>
+              <li>Growth Loops</li>
+              <li>Funnels & attribution</li>
+              <li>Contenido orgánico</li>
+              <li>SEO / SEM</li>
+              <li>Business Intelligence</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ——— ABOUT ——— -->
+  <section>
+    <div class="about">
+      <div class="sec-num">— 02 / PERFIL</div>
+      <div>
+        <p>
+          Construyo en la frontera entre datos, growth y producto — enfocado en
+          adquisición de clientes y en escalar negocios con sistemas medibles.
+        </p>
+        <p>
+          Background en administración de empresas, ciencias del deporte y
+          análisis aplicado de datos. Aprendizaje constante hacia Data Science,
+          con un sesgo práctico hacia automatización e inteligencia artificial
+          aplicada al crecimiento.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ——— EXPERIENCE ——— -->
+  <section>
+    <div class="exp">
+      <div class="sec-num">— 03 / EXPERIENCIA</div>
+      <div class="exp-list">
+
+        <div class="job">
+          <div class="job-date">2022 — Presente</div>
+          <div>
+            <div class="job-role">Director de Marketing</div>
+            <div class="job-company">Mangone Law Firm · NJ, USA</div>
+            <div class="job-desc">
+              Estrategia digital integral de captación y fidelización. Generación
+              promedio de 1M de potenciales leads mensuales mediante pauta, SEO,
+              SEM y contenido. Infraestructura web y tecnológica orientada a la
+              captura de datos para decisiones basadas en Business Intelligence.
+            </div>
+          </div>
+        </div>
+
+        <div class="job">
+          <div class="job-date">2024 — Presente</div>
+          <div>
+            <div class="job-role">Founder / CEO</div>
+            <div class="job-company">Zity</div>
+            <div class="job-desc">
+              Ecosistema digital de productos y servicios geolocalizado,
+              alimentado por reseñas. Dirección del roadmap hacia un modelo
+              agéntico: WebApp + interfaz conversacional automatizada que empareja
+              intención del usuario con oferta local. Modelo B2B + B2C impulsado
+              por user-generated content.
+            </div>
+          </div>
+        </div>
+
+        <div class="job">
+          <div class="job-date">2023</div>
+          <div>
+            <div class="job-role">Founder / CEO</div>
+            <div class="job-company">PyFit App</div>
+            <div class="job-desc">
+              App fitness basada en IA que adapta rutinas de forma dinámica al
+              rendimiento diario del usuario. Backend en Django, modelos
+              probabilísticos y algoritmos de seguimiento de mejora sobre variables
+              antropométricas individualizadas.
+            </div>
+          </div>
+        </div>
+
+        <div class="job">
+          <div class="job-date">2017 — 2023</div>
+          <div>
+            <div class="job-role">Founder / CEO</div>
+            <div class="job-company">Delta Sport Project</div>
+            <div class="job-desc">
+              EdTech de ciencias del deporte con alcance LATAM. Más de 1.000
+              alumnos recurrentes y una comunidad de 2.000+ personas. Ciclo
+              completo de adquisición omnicanal: Meta + Google Ads, email marketing,
+              contenido orgánico y gestión de comunidad.
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ——— EDUCATION ——— -->
+  <section>
+    <div class="edu">
+      <div class="sec-num">— 04 / FORMACIÓN</div>
+      <div class="edu-grid">
+        <div class="edu-item">
+          <div class="edu-inst">Universidad Católica Andrés Bello</div>
+          <div class="edu-deg">Administración y Dirección de Empresas</div>
+          <div class="edu-year">2016 — 2020</div>
+        </div>
+        <div class="edu-item">
+          <div class="edu-inst">University of Michigan</div>
+          <div class="edu-deg">Applied Data Science with Python</div>
+          <div class="edu-year">2022 — 2023</div>
+        </div>
+        <div class="edu-item">
+          <div class="edu-inst">Platzi</div>
+          <div class="edu-deg">Especialista en Análisis de Datos</div>
+          <div class="edu-year">2022 — 2023</div>
+        </div>
+        <div class="edu-item">
+          <div class="edu-inst">Universidad Europea del Atlántico</div>
+          <div class="edu-deg">Especialista en Entrenamiento Deportivo</div>
+          <div class="edu-year">2017 — 2018</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ——— MANIFESTO ——— -->
+  <section class="manifesto" style="border-bottom: none;">
+    <div class="mark">— Lo que me mueve</div>
+    <h2>
+      Aprendo porque no sé detenerme. <span>Creo</span> porque no sé quedarme
+      quieto. Cada sistema, cada dato y cada línea de código son otra forma
+      de <span>aportar</span> — de dejar algo mejor de lo que encontré.
+    </h2>
+    <div class="sign">
+      <div>SEBASTIÁN QUIJADA</div>
+      <div>GROWTH × DATA × AI</div>
+    </div>
+  </section>
+
+</div>
+</body>
+</html>
